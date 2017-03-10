@@ -1,6 +1,9 @@
 {% for vhost in nginx_vhosts %}
 server {
     listen {{ vhost.listen | default('80 default_server') }};
+{% if vhost.ssl_enable == true %}
+    listen 443 ssl;
+{% endif %}
 
 {% if vhost.server_name is defined %}
     server_name {{ vhost.server_name }};
