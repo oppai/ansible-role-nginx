@@ -9,7 +9,7 @@ ssl_certificate_key {{ vhost.ssl_certificate_key }};
 
 server {
     listen {{ vhost.listen | default('80 default_server') }};
-{% if vhost.ssl_enable == true %}
+{% if vhost.ssl_enable is defined and vhost.ssl_enable == true %}
     listen 443 ssl;
 {% endif %}
 
